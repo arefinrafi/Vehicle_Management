@@ -1,0 +1,42 @@
+{% extends 'hometemplate.html' %}
+{% load static %}
+{% block container %}
+	<div id="content-wrapper">
+
+
+		<div class="column">
+			<div id="img-container">
+				<div id="lens"></div>
+				<img id=featured src="{{views.image.url}}">
+			</div>
+
+			<div id="slide-wrapper" >
+				<img id="slideLeft" class="arrow" src="{% static '/details/images/arrow-left.png' %}">
+
+				<div id="slider">
+					{% for view in view %}
+						<img class="thumbnail active" src="{{ view.file.url}}">
+					{% endfor %}
+				</div>
+
+				<img id="slideRight" class="arrow" src="{% static '/details/images/arrow-right.png' %}">
+			</div>
+		</div>
+
+		<div class="column">
+			<h1>Details Information</h1>
+			<hr>
+			<h3>Brand : {{ views.brand}}</h3>
+			<h3>Model : {{ views.model}}</h3>
+			<h3>Description : {{ views.description}}</h3>
+			<h3>Price : {{ views.price}}</h3>
+			<h3>Showroom : {{views.showroom_name}}</h3>
+			<h3>Address : {{ views.address}}</h3>
+			<h3>Contact : {{ views.contact}}</h3>
+
+
+		</div>
+
+	</div>
+{% endblock %}
+

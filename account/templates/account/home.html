@@ -1,0 +1,154 @@
+{% extends 'hometemplate.html' %}
+
+{% block login %}
+    <li><a href="{% url 'login' %}"><i class="fa fa-lock"></i> Login</a></li>
+{% endblock %}
+
+{% block search %}
+<form method="GET" action="">
+    <div class="col-sm-3">
+        <div class="search_box pull-right">
+                <input type="text" name='q' placeholder="Search" value="{{ request.GET.q }}"/>
+        </div>
+    </div>
+</form>
+{% endblock %}
+
+{% block sidemenu %}
+    <h2>Category</h2>
+    <div class="panel-group category-products " id="accordian">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+					<a href="{% url 'car_page' %}"><span class="badge pull-right"><i class="fa fa-plus"></i></span>Car</a>
+                </h4>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a href="{% url 'bike_page' %}"><span class="badge pull-right"><i class="fa fa-plus"></i></span>Bike</a>
+                </h4>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a href="{% url 'bus_page' %}"><span class="badge pull-right"><i class="fa fa-plus"></i></span>Bus</a>
+                </h4>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a href="{% url 'truck_page' %}"><span class="badge pull-right"><i class="fa fa-plus"></i></span>Truck</a>
+                </h4>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a href="{% url 'others_page' %}"><span class="badge pull-right"><i class="fa fa-plus"></i></span>Others</a>
+                </h4>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block container %}
+
+<ul class="pagination">
+    <li class="page-item {% if  paginator.has_previous %} {% endif %}">
+        <a href="?page=1"><<</a>
+    </li>
+    {% for i in paginator.page_range %}
+        <li class="page-item {% if  i == page_number %} active {% endif %}">
+            <a class="page-link" href="?page={{i}}">{{i}}</a>
+        </li>
+    {% endfor %}
+     <li class="page-item {% if paginator.has_next %} {% endif %}">
+        <a href="?page={{ paginator.num_pages }}">>></a>
+    </li>
+</ul>
+
+<!--<div class="pagination">
+    {% if homepanel.has_previous %}
+        <a href="?page=1"><<</a>
+        <a href="?page={{ homepanel.previous_page_number }}"><</a>
+    {% endif %}
+    {% for num  in homepanel.paginator.page_range  %}
+        {% if homepanel.number == num  %}
+            <strong>{{ num }}</strong>
+        {% else %}
+            {{ num }}
+        {% endif %}
+
+    {% endfor %}
+    {% if homepanel.has_next %}
+        <a href="?page={{ homepanel.next_page_number }}">></a>
+        <a href="?page={{ homepanel.paginator.num_pages }}">>></a>
+    {% endif %}
+
+    &lt;!&ndash;{{ homepanel.has_previous }}
+    {{ homepanel.number }}
+    {{ homepanel.paginator.count }}             &lt;!&ndash;count is the total number of objects&ndash;&gt;
+    {{ homepanel.paginator.num_pages }}          &lt;!&ndash;num_pages is the total number of pages&ndash;&gt;
+    {{ homepanel.paginator.page_range }}        &lt;!&ndash;page_range is the iterator&ndash;&gt;
+    {{ homepanel.has_next }}&ndash;&gt;
+</div>-->
+
+
+<div class="features_items">
+    <!--<div class="pagination">
+        {% if homepanel.has_previous %}
+            <a href="?page=1"><<</a>
+            <a href="?page={{ vehicle.previous_page_number }}"><</a>
+        {% endif %}
+        {% for num  in homepanel.paginator.page_range  %}
+            {% if homepanel.number == num  %}
+                <strong>{{ num }}</strong>
+            {% else %}
+                {{ num }}
+            {% endif %}
+
+        {% endfor %}
+        {% if homepanel.has_next %}
+            <a href="?page={{ homepanel.next_page_number }}">></a>
+            <a href="?page={{ homepanel.paginator.num_pages }}">>></a>
+        {% endif %}
+    </div>-->
+	<h2 class="title text-center">Features Items</h2>
+
+	{% for home in homepanel %}
+	<div class="col-sm-4">
+		<div class="product-image-wrapper">
+			<div class="single-products">
+				<div class="productinfo text-center">
+
+					<img src="{{home.image.url}}" width="150px" height="150px" />
+					<h2>${{ home.price }}</h2>
+                    <h4>{{home.brand}}  {{home.model}}</h4>
+					<a href="{% url 'view_details' pk=home.pk %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
+				</div>
+				<!--<div class="product-overlay">
+					<div class="overlay-content" >
+						<img src="{{home.image.url}}" width="150px" height="150px" style="padding-top:20px;"/>
+						<h2>${{ home.price }}</h2>
+						<p>{{ home.description}}</p>
+						<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+					</div>
+				</div>-->
+			</div>
+			<!--<div class="choose">
+				<ul class="nav nav-pills nav-justified">
+					<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+					<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+				</ul>
+			</div>-->
+		</div>
+	</div>
+	{% endfor %}
+</div>
+
+{% endblock %}

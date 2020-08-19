@@ -1,0 +1,72 @@
+{% extends 'hometemplate.html' %}
+
+{% block brands %}
+<div class="brands_products">
+    <h2>Brands</h2>
+    <div class="brands-name">
+        <ul class="nav nav-pills nav-stacked">
+            <li><a href="{% url 'audi' %}"> <span class="pull-right">(50)</span>Audi</a></li>
+            <li><a href="{% url 'astonmartin' %}"> <span class="pull-right">(50)</span>Aston Martin</a></li>
+            <li><a href="{% url 'bentley' %}"> <span class="pull-right">(50)</span>Bentley</a></li>
+            <li><a href="{% url 'bmw' %}"> <span class="pull-right">(56)</span>BMW</a></li>
+            <li><a href="{% url 'bugatti' %}"> <span class="pull-right">(56)</span>Bugatti</a></li>
+            <li><a href="{% url 'cadillac' %}"> <span class="pull-right">(27)</span>Cadillac</a></li>
+            <li><a href="{% url 'chevrolet' %}"> <span class="pull-right">(27)</span>Chevrolet</a></li>
+            <li><a href="{% url 'ford' %}"> <span class="pull-right">(4)</span>Ford</a></li>
+            <li><a href="{% url 'ferrari' %}"> <span class="pull-right">(4)</span>Ferrari</a></li>
+            <li><a href="{% url 'honda' %}"> <span class="pull-right">(4)</span>Honda</a></li>
+            <li><a href="{% url 'hyundai' %}"> <span class="pull-right">(4)</span>Hyundai</a></li>
+            <li><a href="{% url 'jaguar' %}"> <span class="pull-right">(4)</span>Jaguar</a></li>
+            <li><a href="{% url 'jeep' %}"> <span class="pull-right">(4)</span>Jeep</a></li>
+            <li><a href="{% url 'lamborghini' %}"> <span class="pull-right">(9)</span>Lamborghini</a></li>
+            <li><a href="{% url 'landrover' %}"> <span class="pull-right">(9)</span>Land Rover</a></li>
+            <li><a href="{% url 'lexus' %}"> <span class="pull-right">(9)</span>Lexus</a></li>
+            <li><a href="{% url 'mercedes' %}"> <span class="pull-right">(32)</span>Mercedes Benz</a></li>
+            <li><a href="{% url 'maserati' %}"> <span class="pull-right">(32)</span>Maserati</a></li>
+            <li><a href="{% url 'mazda' %}"> <span class="pull-right">(32)</span>Mazda</a></li>
+            <li><a href="{% url 'maclaren' %}"> <span class="pull-right">(5)</span>Maclaren</a></li>
+            <li><a href="{% url 'nissan' %}"> <span class="pull-right">(4)</span>Nissan</a></li>
+            <li><a href="{% url 'porsche' %}"> <span class="pull-right">(4)</span>Porsche</a></li>
+            <li><a href="{% url 'rollsroyce' %}"> <span class="pull-right">(4)</span>Rolls Royce</a></li>
+            <li><a href="{% url 'toyota' %}"> <span class="pull-right">(4)</span>Toyota</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block container %}
+
+<div class="features_items">
+	<h2 class="title text-center">Car Heaven</h2>
+	{% for brand in brands %}
+	<div class="col-sm-4">
+		<div class="product-image-wrapper">
+			<div class="single-products">
+				<div class="productinfo text-center">
+
+					<img src="{{brand.image.url}}" width="150px" height="150px" />
+					<h2>${{ brand.price }}</h2>
+					<h4>{{brand.brand}}  {{brand.model}}</h4>
+					<a href="{% url 'view_details' pk=brand.pk %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
+				</div>
+				<!--<div class="product-overlay">
+					<div class="overlay-content" >
+						<img src="{{home.image.url}}" width="150px" height="150px" style="padding-top:20px;"/>
+						<h2>${{ home.price }}</h2>
+						<p>{{ home.description}}</p>
+						<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+					</div>
+				</div>-->
+			</div>
+			<div class="choose">
+				<ul class="nav nav-pills nav-justified">
+					<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+					<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}

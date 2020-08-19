@@ -1,0 +1,66 @@
+{% extends 'hometemplate.html' %}
+
+{% block login %}
+    <li><a href="{% url 'logout' %}"><i class="fa fa-lock"></i> Logout</a></li>
+{% endblock %}
+
+{% block sidemenu %}
+    <h2>Upload</h2>
+    <div class="panel-group category-products" id="accordian">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+					<a href="{% url 'admin_upload' %}"><span class="badge pull-right"><i class="fa fa-plus"></i></span>Details Upload</a>
+                </h4>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block container %}
+
+<div class="features_items">
+	{% for showroom in showroom %}
+	<h2 class="title text-center">Welcome to {{ showroom.showroom_name }}</h2>
+	{% endfor %}
+	{% for message in messages %}
+		<p id="messages" style="background: #00ff40; color: #ffffff; text-align: center;">{{message}}</p>
+	{% endfor %}
+	{% for admin in adminpanel %}
+	<div class="col-sm-4">
+		<div class="product-image-wrapper">
+			<div class="single-products">
+				<div class="productinfo text-center">
+
+					<img src="{{admin.image.url}}" width="150px" height="150px" />
+					<h2>${{ admin.price }}</h2>
+					<h4>{{admin.brand}}  {{admin.model}}</h4>
+					<a href="{% url 'view_details' pk=admin.pk %}" class="btn btn-default add-to-cart">
+						<i class="fa fa-shopping-cart"></i>Details</a>
+					<a href="{% url 'admin_update' id=admin.id %}" class="btn btn-default add-to-cart">
+						<i class="fa fa-pencil-square-o"></i>Edit</a>
+					<a href="{% url 'admin_delete' admin.id %}" class="btn btn-default add-to-cart">
+							<i class="fa fa-trash-o float-right"></i>Delete</a>
+
+				</div>
+				<!--<div class="product-overlay">
+					<div class="overlay-content" >
+						<img src="{{home.image.url}}" width="150px" height="150px" style="padding-top:20px;"/>
+						<h2>${{ home.price }}</h2>
+						<p>{{ home.description}}</p>
+						<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+					</div>
+				</div>-->
+			</div>
+			<div class="choose">
+				<ul class="nav nav-pills nav-justified">
+					<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+					<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}
