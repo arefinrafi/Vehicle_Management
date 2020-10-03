@@ -2,39 +2,60 @@
 {% load static %}
 {% block container %}
 	<div id="content-wrapper">
+		<div class="row">
+			<div class="col-md-6 mb-4">
+				<div id="img-container">
+					<div id="lens"></div>
+					<img id=featured src="{{views.image.url}}">
+				</div>
+				<div id="slide-wrapper" >
+					<img id="slideLeft" class="arrow" src="{% static '/details/images/arrow-left.png' %}">
 
+					<div id="slider">
+						{% for view in view %}
+							<img class="thumbnail active" src="{{ view.file.url}}">
+						{% endfor %}
+					</div>
 
-		<div class="column">
-			<div id="img-container">
-				<div id="lens"></div>
-				<img id=featured src="{{views.image.url}}">
+					<img id="slideRight" class="arrow" src="{% static '/details/images/arrow-right.png' %}">
+				</div>
 			</div>
-
-			<div id="slide-wrapper" >
-				<img id="slideLeft" class="arrow" src="{% static '/details/images/arrow-left.png' %}">
-
-				<div id="slider">
-					{% for view in view %}
-						<img class="thumbnail active" src="{{ view.file.url}}">
-					{% endfor %}
+			<div class="col-md-6 mb-4">
+				<div class="main-left">
+					<h3><span class="font_color">Brand</span> : {{ views.brand}}</h3>
+					<h3><span class="font_color">Model</span> : {{ views.model}}</h3>
+					<h3><span class="font_color">Price</span> : {{ views.price}}</h3>
+					<h3><span class="font_color">Showroom Name</span> : {{ views.showroom_name}}</h3>
+					<h3><span class="font_color">Contact</span> : {{ views.contact}}</h3>
 				</div>
 
-				<img id="slideRight" class="arrow" src="{% static '/details/images/arrow-right.png' %}">
 			</div>
 		</div>
 
-		<div class="column">
-			<h1>Details Information</h1>
+		<div class="row">
+			<h1 style="color: #DC143C;">Details Information</h1>
 			<hr>
-			<h3>Brand : {{ views.brand}}</h3>
-			<h3>Model : {{ views.model}}</h3>
-			<h3>Description : {{ views.description}}</h3>
-			<h3>Price : {{ views.price}}</h3>
-			<h3>Showroom : {{views.showroom_name}}</h3>
-			<h3>Address : {{ views.address}}</h3>
-			<h3>Contact : {{ views.contact}}</h3>
-
-
+			<h3><span class="font_color">Year</span> : {{ views.year}}</h3>
+			<h3><span class="font_color">Mileage</span> : {{ views.mileage}}</h3>
+			<h3><span class="font_color">Engine Capacity</span> : {{ views.engine_capacity}}</h3>
+			<h3><span class="font_color">Fuel Type</span> : {{ views.fuel_type}}</h3>
+			<h3><span class="font_color">Max Power</span> : {{ views.max_power}}</h3>
+			<h3><span class="font_color">Max Speed</span> : {{ views.max_speed}}</h3>
+			<h3><span class="font_color">Torque</span> : {{ views.torque}}</h3>
+			<h3><span class="font_color">Fuel Consumption</span> : {{ views.fuel_consumption}}</h3>
+			<h3><span class="font_color">Door</span> : {{ views.door}}</h3>
+			<h3><span class="font_color">Drive Type</span> : {{ views.drive_type}}</h3>
+			<h3><span class="font_color">Seats</span> : {{ views.seats}}</h3>
+			<h3><span class="font_color">Wheel Base</span> : {{ views.wheel_base}}</h3>
+			<h3><span class="font_color">Weight</span> : {{ views.weight}}</h3>
+			<h3><span class="font_color">Length</span> : {{ views.length}}</h3>
+			<h3><span class="font_color">Width</span> : {{ views.width}}</h3>
+			<h3><span class="font_color">Height</span> : {{ views.height}}</h3>
+			<h3><span class="font_color">Fuel Tank Capacity</span> : {{ views.fuel_tank_capacity}}</h3>
+			<h3><span class="font_color">Color</span> : {{ views.color}}</h3>
+			<h3><span class="font_color">No. of Cylinder</span> : {{ views.no_of_cylinder}}</h3>
+			<h3><span class="font_color">Description</span> :<textarea rows="4" cols="2">{{ views.description}}</textarea></h3>
+			<h3><span class="font_color">Address</span> : {{ views.address}}</h3>
 		</div>
 
 	</div>
