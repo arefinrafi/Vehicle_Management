@@ -12,9 +12,15 @@ class CreateUserForm(UserCreationForm):
 
 
 class AdminUploadForm(forms.ModelForm):
+    description = forms.CharField(widget=forms.Textarea(attrs={"rows": 5}))
+
     class Meta:
         model = Vehicle_info
-        fields = ['v_type', 'brand', 'model', 'description', 'price', 'showroom_name', 'address', 'contact', 'image']
+        fields = ['v_type', 'brand', 'model', 'year', 'mileage', 'engine_capacity', 'fuel_type', 'max_power',
+                  'max_speed', 'torque', 'fuel_consumption',
+                  'door', 'drive_type', 'seats', 'wheel_base', 'weight', 'length', 'width', 'height',
+                  'fuel_tank_capacity', 'color', 'no_of_cylinder',
+                  'description', 'price', 'showroom_name', 'address', 'contact', 'image']
 
     def __init__(self, *args, **kwargs):
         super(AdminUploadForm, self).__init__(*args, **kwargs)
